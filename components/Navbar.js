@@ -13,9 +13,17 @@ export default function Navbar() {
           Next Blog
         </Link>
 
-        <span className="text-sm text-gray-300">
-          Next.js 15
-        </span>
+      <div className="hidden md:flex gap-6 text-sm text-gray-300">
+
+    <Link href="/">
+        Home
+    </Link>
+
+    <span>
+        Blogs
+    </span>
+
+</div>
 
       </div>
 
