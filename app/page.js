@@ -12,7 +12,7 @@ export default async function Home() {
 
       <main className="max-w-7xl mx-auto px-6 py-10">
         <section className="text-center mb-10">
-          <h1 className="text-5xl font-bold text-slate-800">
+         <h1 className="text-4xl md:text-5xl font-bold text-slate-800">
             Welcome to Next Blog
           </h1>
 
