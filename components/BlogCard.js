@@ -10,7 +10,7 @@ export default function BlogCard({ post }) {
           {post.title}
         </h2>
 
-        <p className="mt-4 text-gray-600 line-clamp-4">
+        <p className="mt-4 text-gray-600 line-clamp-4 leading-7">
           {post.body}
         </p>
 
