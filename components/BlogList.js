@@ -1,55 +1,39 @@
 "use client";
 
-import { useState } from "react";
-import BlogCard from "./BlogCard";
+import { useMemo, useState } from "react";
 import SearchBar from "./SearchBar";
+import BlogCard from "./BlogCard";
 
 export default function BlogList({ posts }) {
+  const [search, setSearch] = useState("");
 
-const [search,setSearch]=useState("");
+  const filteredPosts = useMemo(() => {
+    return posts.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [posts, search]);
 
-const filtered=posts.filter(post=>
+  return (
+    <>
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+      />
 
-post.title.toLowerCase()
-
-.includes(search.toLowerCase())
-
-);
-
-return(
-
-<>
-
-<SearchBar
-
-search={search}
-
-setSearch={setSearch}
-
-/>
-
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-{
-
-filtered.map(post=>
-
-<BlogCard
-
-key={post.id}
-
-post={post}
-
-/>
-
-)
-
-}
-
-</div>
-
-</>
-
-);
-
+      {filteredPosts.length === 0 ? (
+        <div className="text-center text-gray-500 mt-12">
+          No blog posts found.
+        </div>
+      ) : (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.map((post) => (
+            <BlogCard
+              key={post.id}
+              post={post}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
 }
