@@ -1,34 +1,28 @@
 import Link from "next/link";
 
 export default function BlogCard({ post }) {
+  return (
+    <article className="rounded-2xl border bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
 
-return (
+      <div className="p-6">
 
-<div className="shadow rounded-xl p-5 hover:shadow-lg transition">
+        <h2 className="text-2xl font-bold text-slate-800">
+          {post.title}
+        </h2>
 
-<h2 className="text-xl font-bold">
+        <p className="mt-4 text-gray-600 line-clamp-4">
+          {post.body}
+        </p>
 
-{post.title}
+        <Link
+          href={`/blog/${post.id}`}
+          className="inline-block mt-6 text-blue-600 font-semibold hover:underline"
+        >
+          Read More →
+        </Link>
 
-</h2>
+      </div>
 
-<p className="text-gray-600 mt-3">
-
-{post.body.slice(0,120)}...
-
-</p>
-
-<Link
-href={`/blog/${post.id}`}
-className="text-blue-500 mt-4 inline-block"
->
-
-Read More →
-
-</Link>
-
-</div>
-
-);
-
+    </article>
+  );
 }
