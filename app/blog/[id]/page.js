@@ -1,31 +1,66 @@
 import { getPost } from "@/lib/getPosts";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default async function Blog({ params }) {
+export async function generateMetadata({ params }) {
+  try {
+    const post = await getPost(params.id);
 
-  const post = await getPost(params.id);
+    return {
+      title: post.title,
+      description: post.body.slice(0, 150),
+      openGraph: {
+        title: post.title,
+        description: post.body.slice(0, 150),
+        type: "article",
+      },
+    };
+  } catch {
+    return {
+      title: "Blog Not Found",
+    };
+  }
+}
+
+export default async function BlogPage({ params }) {
+  let post;
+
+  try {
+    post = await getPost(params.id);
+  } catch {
+    notFound();
+  }
 
   return (
-
-    <div className="max-w-3xl mx-auto p-10">
+    <main className="max-w-4xl mx-auto px-6 py-10">
 
       <Link
         href="/"
-        className="text-blue-500"
+        className="text-blue-600 hover:underline"
       >
-        ← Back
+        ← Back to Home
       </Link>
 
-      <h1 className="text-4xl font-bold mt-8">
-        {post.title}
-      </h1>
+      <article className="mt-8">
 
-      <p className="mt-5 text-gray-600">
-        {post.body}
-      </p>
+        <h1 className="text-5xl font-bold text-slate-800 leading-tight">
+          {post.title}
+        </h1>
 
-    </div>
+        <div className="mt-4 text-gray-500 text-sm">
+          Blog ID: {post.id}
+        </div>
 
+        <div className="mt-8 border-t pt-8">
+
+          <p className="text-lg leading-9 text-gray-700 whitespace-pre-line">
+            {post.body}
+          </p>
+
+        </div>
+
+      </article>
+
+    </main>
   );
-
 }
