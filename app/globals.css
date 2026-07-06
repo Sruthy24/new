@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-background:#f8fafc;
-font-family:Arial,Helvetica,sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  transition: 0.3s;
 }
