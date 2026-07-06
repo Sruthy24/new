@@ -1,19 +1,24 @@
+import Link from "next/link";
+
 export default function Navbar() {
-
   return (
+    <nav className="bg-black text-white shadow">
 
-<nav className="bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-<div className="max-w-6xl mx-auto flex justify-between items-center p-5">
+        <Link
+          href="/"
+          className="text-2xl font-bold"
+        >
+          Next Blog
+        </Link>
 
-<h2 className="text-2xl font-bold">
-Next Blog
-</h2>
+        <span className="text-sm text-gray-300">
+          Next.js 15
+        </span>
 
-</div>
+      </div>
 
-</nav>
-
-);
-
+    </nav>
+  );
 }
